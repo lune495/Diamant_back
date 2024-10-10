@@ -25,7 +25,7 @@ use App\Http\Controllers\AuthController;
 // Route::get('/histoires',[HistoireController::class, 'index']);
 
 Route::post('/register',[AuthController::class,'register']);
-Route::post('/login',[AuthController::class,'login']);
+Route::post('/login2',[AuthController::class,'login']);
 
 Route::group(['middleware' => ['auth:sanctum']],function()
 {

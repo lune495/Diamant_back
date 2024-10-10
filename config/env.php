@@ -11,7 +11,7 @@ return [
     | faire à nouveau php artisan config:cache pour rendre la modification disponible.
     |
     */
-    'APP_URL' => env('APP_URL', 'https://chroflix.com'),
+    'APP_URL' => env('APP_URL', 'http://localhost/diamant_back/public'),
     'PAYMENT_REDIRECT_PATH' => env('PAYMENT_REDIRECT_PATH', '/payment/checkout/'),
     'PAYMENT_REQUEST_PATH' => env('PAYMENT_REQUEST_PATH', '/api/payment/request-payment'),
     'MOBILE_CANCEL_URL' => env('MOBILE_CANCEL_URL', 'https://paytech.sn/mobile/cancel'),
