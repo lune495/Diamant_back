@@ -11,6 +11,8 @@ use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\Labo2Controller;
 use App\Http\Controllers\MaterniteController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SuiviController;
+use App\Http\Controllers\DossierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,8 @@ Route::post('/changestatut/{id}',[CaisseController::class,'statutPDFpharmacie'])
 Route::post('/cloture_caisse',[CaisseController::class,'closeCaisse']);
 Route::post('/type_service',[TypeServiceController::class,'save']);
 Route::post('/module',[ModuleController::class,'save']);
+Route::post('/dossier',[DossierController::class,'save']);
+Route::post('/suivi',[SuiviController::class,'save']);
 Route::post('/medecin',[MedecinController::class,'save']);
 Route::post('/depense',[DepenseController::class,'save']);
 Route::post('/labo',[LaboController::class,'save']);

@@ -28,6 +28,7 @@ class ServiceType extends GraphQLType
                 'montant_total'             => ['type' => Type::int()],
                 'medecin'                   => ['type' => GraphQL::type('Medecin')],
                 'user'                      => ['type' => GraphQL::type('User')],
+                'patient'                   => ['type' => GraphQL::type('Patient')],
                 'module'                    => ['type' => GraphQL::type('Module')],
                 'element_services'          => ['type' => Type::listOf(GraphQL::type('ElementService')), 'description' => ''],
                 'created_at'                => ['type' => Type::string()],

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image as Image;
-use App\Models\{Service,Outil,User,Produit,Module,ElementService,Log,TypeService,ClotureCaisse,Depense,Vente};
+use App\Models\{Service,Outil,User,Patient,Produit,Module,ElementService,Log,TypeService,ClotureCaisse,Depense,Vente};
 use \PDF;
 use App\Events\MyEvent;
 use \DNS1D;
@@ -22,6 +22,7 @@ class CaisseController extends Controller
         {
             $errors =null;
             $item = new Service();
+            $patient = new Patient();
             $log = new Log();
             $user = Auth::user();
             if (!empty($request->id))
@@ -32,18 +33,28 @@ class CaisseController extends Controller
             {
                 $errors = "Renseignez le Medecin";
             }
-            if (empty($request->nom_complet))
+            if (empty($request->nom))
             {
-                $errors = "Renseignez le nom";
+                $errors = "Renseignez le nom du patient";
+            }
+
+            if (empty($request->prenom))
+            {
+                $errors = "Renseignez le prénom du patient";
             }
             $str_json_type_service = json_encode($request->type_services);
             $type_service_tabs = json_decode($str_json_type_service, true);
 
             // Ajoutez un verrouillage de la table factice pour éviter les opérations concurrentes.
-            DB::table('service_locks')->lockForUpdate()->get();
+            // DB::table('service_locks')->lockForUpdate()->get();
             DB::beginTransaction();
-            $item->nom_complet = $request->nom_complet;
-            $item->nature = $request->nature;
+            $patient->nom = $request->nom;
+            $patient->prenom = $request->prenom;
+            $patient->adresse = $request->adresse;
+            $patient->telephone = $request->telephone;
+            $patient->save();
+            $id_patient = $patient->id;
+            $item->patient_id = $id_patient ;
             $item->montant = $request->montant;
             $item->adresse = $request->adresse;
             $item->remise = $request->remise;
